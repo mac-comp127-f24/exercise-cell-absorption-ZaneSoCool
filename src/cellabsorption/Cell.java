@@ -62,5 +62,4 @@ public class Cell {
         return ((theta + Math.PI) % pi2 + pi2) % pi2 - Math.PI;
     }
 
-    //hi
 }
