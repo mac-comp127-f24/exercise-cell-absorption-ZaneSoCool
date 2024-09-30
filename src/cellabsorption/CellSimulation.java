@@ -1,7 +1,6 @@
 package cellabsorption;
 
 import edu.macalester.graphics.CanvasWindow;
-import edu.macalester.graphics.Ellipse;
 import edu.macalester.graphics.Point;
 
 import java.awt.Color;
@@ -28,7 +27,7 @@ public class CellSimulation {
             for (Cell cell : cells) {
                 Point canvasCenter = new Point(canvas.getWidth() / 2.0, canvas.getHeight() / 2.0);
                 cell.moveAround(canvasCenter);
-                cell.grow(0.02);
+                handleCellInteraction();
             }
             canvas.draw();
             canvas.pause(10);
@@ -47,6 +46,16 @@ public class CellSimulation {
                 size,
                 Color.getHSBColor(rand.nextFloat(), rand.nextFloat() * 0.5f + 0.1f, 1));
             canvas.add(cell.getShape());
+        }
+    }
+
+    private void handleCellInteraction() {
+        for (Cell cell : cells) {
+            for (Cell cell2 : cells) {
+                if (cell != cell2) {
+                    cell.interactWith(cell2);
+                }
+            }
         }
     }
 }
